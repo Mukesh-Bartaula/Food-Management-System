@@ -64,7 +64,7 @@ flutter:
     - assets/images/logo.png
     - assets/images/googleLogo.png
     - assets/images/fbLogo.png
-    - assets/images/profile.png
+    - assets/images/profile.png 
     - assets/images/notifications.png
     - assets/images/search.png
     - assets/images/bikeLogo.png
