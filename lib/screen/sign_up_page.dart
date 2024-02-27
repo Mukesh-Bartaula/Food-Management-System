@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kutumba_bhoj/util/welcome_screen.dart';
+import 'package:food_management_system/screen/log_in.dart';
+import 'welcome_screen.dart';
 import 'restaurants.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -77,7 +78,7 @@ class SignUpPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Restaurants()),
+                  MaterialPageRoute(builder: (context) => Login()),
                 );
               },
               child: Padding(

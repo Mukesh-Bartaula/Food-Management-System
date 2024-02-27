@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kutumba_bhoj/util/sign_up_page.dart';
+import 'package:food_management_system/screen/get_started.dart';
+import 'sign_up_page.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key});
@@ -13,7 +14,7 @@ class WelcomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'lib/assets/images/logo.png',
+              'assets/images/logo.png',
               width: 390,
               height: 200,
             ),
@@ -22,7 +23,7 @@ class WelcomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => SignUpPage(),
+                    builder: (context) => GetStarted(),
                   ),
                 );
               },

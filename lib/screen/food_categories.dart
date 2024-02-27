@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_management_system/screen/all_food.dart';
 
 class FoodCategories extends StatefulWidget {
   const FoodCategories({Key? key}) : super(key: key);
@@ -72,28 +73,32 @@ class _FoodCategoriesState extends State<FoodCategories> {
               crossAxisSpacing: 1.0,
               mainAxisSpacing: 1.0,
               children: [
-                RestaurantCard(
-                  logo: 'lib/assets/images/nonveg.png',
-                  name: 'Non-Veg',
+                InkWell(
+                  onTap: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (builder) => const AllFood())),
+                  child: RestaurantCard(
+                    logo: 'assets/images/nonveg.png',
+                    name: 'Non-Veg',
+                  ),
                 ),
                 RestaurantCard(
-                  logo: 'lib/assets/images/veg.png',
+                  logo: 'assets/images/veg.png',
                   name: 'Veg',
                 ),
                 RestaurantCard(
-                  logo: 'lib/assets/images/momo.png',
+                  logo: 'assets/images/momo.png',
                   name: 'Mo:Mo',
                 ),
                 RestaurantCard(
-                  logo: 'lib/assets/images/pizza.png',
+                  logo: 'assets/images/pizza.png',
                   name: 'Pizza',
                 ),
                 RestaurantCard(
-                  logo: 'lib/assets/images/korean.png',
+                  logo: 'assets/images/korean.png',
                   name: 'Korean',
                 ),
                 RestaurantCard(
-                  logo: 'lib/assets/images/sweets.png',
+                  logo: 'assets/images/sweets.png',
                   name: 'Sweets',
                 ),
               ],

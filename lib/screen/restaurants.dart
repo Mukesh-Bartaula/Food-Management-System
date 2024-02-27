@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_management_system/screen/restaurant.dart';
 
 class Restaurants extends StatefulWidget {
   const Restaurants({Key? key}) : super(key: key);
@@ -13,22 +14,22 @@ class _RestaurantsState extends State<Restaurants> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFF5F5F5),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {},
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications, color: Colors.black),
+            icon: const Icon(Icons.notifications, color: Colors.black),
             onPressed: () {},
           ),
         ],
         title: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(5),
@@ -37,11 +38,11 @@ class _RestaurantsState extends State<Restaurants> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 2,
                 blurRadius: 5,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               ),
             ],
           ),
-          child: TextField(
+          child: const TextField(
             decoration: InputDecoration(
               hintText: 'Search your favorite food here...',
               border: InputBorder.none,
@@ -55,8 +56,8 @@ class _RestaurantsState extends State<Restaurants> {
         children: [
           Container(
             color: Colors.amber,
-            padding: EdgeInsets.all(5),
-            child: Text(
+            padding: const EdgeInsets.all(5),
+            child: const Text(
               'Restaurants',
               style: TextStyle(
                 fontSize: 24,
@@ -68,30 +69,28 @@ class _RestaurantsState extends State<Restaurants> {
           Expanded(
             child: GridView.count(
               crossAxisCount: 2,
-              padding: EdgeInsets.all(5.0),
+              padding: const EdgeInsets.all(5.0),
               crossAxisSpacing: 8.0,
               mainAxisSpacing: 10.0,
-              children: [
+              children: const [
                 RestaurantCard(
-                  logo: 'lib/assets/images/hankook.png',
+                  logo: 'assets/images/hankook.png',
                   name: 'Hankook Sarang Restaurant',
                 ),
                 RestaurantCard(
-                  logo: 'lib/assets/images/workshop.png',
+                  logo: 'assets/images/workshop.png',
                   name: 'Workshop Eatery',
                 ),
                 RestaurantCard(
-                  logo: 'lib/assets/images/marcopolo.png',
+                  logo: 'assets/images/marcopolo.png',
                   name: 'Marcopolo Resturant',
                 ),
-                SingleChildScrollView(
-                  child: RestaurantCard(
-                    logo: 'lib/assets/images/marriott.png',
-                    name: 'Marriott Nepal',
-                  ),
+                RestaurantCard(
+                  logo: 'assets/images/marriott.png',
+                  name: 'Marriott Nepal',
                 ),
                 RestaurantCard(
-                  logo: 'lib/assets/images/sub.png',
+                  logo: 'assets/images/sub.png',
                   name: 'Sub Express',
                 ),
               ],
@@ -143,33 +142,48 @@ class RestaurantCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-            child: Image.asset(
-              logo,
-              fit: BoxFit.cover,
-            ),
+    return GestureDetector(
+      onTap: () {
+        // Navigate to the restaurant details page or any other page
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Restaurant(),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              name,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+        );
+      },
+      child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(10),
               ),
-              textAlign: TextAlign.center,
+              child: Image.asset(
+                logo,
+                fit: BoxFit.contain,
+                height: 100,
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                name,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -3,6 +3,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:food_management_system/screen/food_categories.dart';
+import 'package:food_management_system/screen/restaurants.dart';
 import '../context/colors.dart';
 import './all_food.dart';
 import './profile.dart';
@@ -18,10 +20,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final tabs = [
-    Center(child: Home()),
-    Center(child: AllFood()),
-    Center(child: Home()),
-    Center(child: Home()),
+    const Center(child: Home()),
+    const Center(child: AllFood()),
+    const Center(child: Home()),
+    const Center(child: Home()),
   ];
 
   @override
@@ -47,7 +49,7 @@ class _HomeState extends State<Home> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Profile(),
+                      builder: (context) => const Profile(),
                     ),
                   );
                 },
@@ -118,7 +120,7 @@ class _HomeState extends State<Home> {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 2,
             blurRadius: 5,
-            offset: Offset(0, 1), // changes the shadow position
+            offset: const Offset(0, 1), // changes the shadow position
           ),
         ],
       ),
@@ -215,14 +217,20 @@ class _HomeState extends State<Home> {
   Widget foodCategories() {
     return Column(
       children: [
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               'Food Categories',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            Text('view all')
+            InkWell(
+              child: const Text('view all'),
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => const FoodCategories())),
+            )
           ],
         ),
         Container(
@@ -276,7 +284,7 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Restaurant(),
+                            builder: (context) => const Restaurant(),
                           ),
                         );
                       },
@@ -333,8 +341,10 @@ class _HomeState extends State<Home> {
                 child: ElevatedButton(
                   onPressed: () {
                     print('Login button pressed');
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AllFood()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Restaurants()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 5, 91, 161),

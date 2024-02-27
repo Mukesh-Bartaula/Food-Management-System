@@ -43,7 +43,7 @@ class _FoodDesState extends State<FoodDes> {
             child: ListView(
               children: [
                 RestaurantCard(
-                  logo: 'lib/assets/images/nonveg.png',
+                  logo: 'assets/images/nonveg.png',
                   name: 'Chicken Khana Set',
                   price: 550,
                   deliveryCharge: _deliveryCharge,

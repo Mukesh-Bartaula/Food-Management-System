@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_management_system/screen/sign_up_page.dart';
 import '../context/colors.dart';
 import './home.dart';
 
@@ -29,7 +30,7 @@ class GetStarted extends StatelessWidget {
                   onPressed: () {
                     print('get started button pressed');
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
+                        MaterialPageRoute(builder: (context) => SignUpPage()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 25, 135, 84),
