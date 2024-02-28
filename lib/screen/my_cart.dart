@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:food_management_system/screen/my_cart.dart';
 
-class FoodDes extends StatefulWidget {
-  const FoodDes({Key? key}) : super(key: key);
+class MyCart extends StatefulWidget {
+  const MyCart({Key? key}) : super(key: key);
 
   @override
-  State<FoodDes> createState() => _FoodDesState();
+  State<MyCart> createState() => _MyCartState();
 }
 
-class _FoodDesState extends State<FoodDes> {
+class _MyCartState extends State<MyCart> {
   int _quantity = 1;
   double _deliveryCharge = 100.0;
   double _totalPrice = 560.99;
@@ -31,12 +30,14 @@ class _FoodDesState extends State<FoodDes> {
           Container(
             color: Colors.amber,
             padding: EdgeInsets.all(5),
-            child: Text(
-              'Food Description',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+            child: Center(
+              child: Text(
+                'My Cart',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
@@ -75,11 +76,7 @@ class _FoodDesState extends State<FoodDes> {
             children: [
               ElevatedButton(
                 onPressed: () {},
-                child: InkWell(
-                  child: Text('Add to Cart'),
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (builder) => const MyCart())),
-                ),
+                child: Text('Add to Cart'),
               ),
               ElevatedButton(
                 onPressed: () {},
@@ -162,8 +159,6 @@ class RestaurantCard extends StatelessWidget {
                   ),
                 ],
               ),
-              Text('Delivery Charge: \Rs ${deliveryCharge.toStringAsFixed(0)}'),
-              Divider(),
             ],
           ),
         ),

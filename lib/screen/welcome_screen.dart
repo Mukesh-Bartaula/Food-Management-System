@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_management_system/screen/get_started.dart';
-import 'sign_up_page.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key});
