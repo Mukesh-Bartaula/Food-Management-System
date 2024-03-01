@@ -1,9 +1,7 @@
-// import 'package:flutter/gestures.dart';
-// import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../context/colors.dart';
+import './cart.dart';
 import './all_food.dart';
 import './profile.dart';
 import './restaurant.dart';
@@ -19,7 +17,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final tabs = [
     Center(child: Home()),
-    Center(child: AllFood()),
+    Center(child: Home()),
     Center(child: Home()),
     Center(child: Home()),
   ];
@@ -70,8 +68,8 @@ class _HomeState extends State<Home> {
                   searchBox(),
                   exploreFood(),
                   foodCategories(),
+                  allFood(),
                   restaurant(),
-                  allFood()
                 ]),
               ),
             ],
@@ -140,22 +138,10 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   decoration: const BoxDecoration(
                     color: Colors.white,
-                    // borderRadius: BorderRadius.circular(5),
                   ),
                   child: const TextField(
-                    // onChanged: (value) => _runFilter(value),
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(0),
-                      // prefixIcon: Icon(
-                      //   Icons.search,
-                      //   color: black,
-                      //   size: 20,
-                      // ),
-
-                      // prefixIconColor: Color.fromARGB(255, 210, 240, 14),
-                      // prefixIconConstraints: BoxConstraints(
-                      //   maxHeight: 20,
-                      // ),
                       hintText: 'Search your favorite foods...',
                       border: InputBorder.none,
                     ),
@@ -164,18 +150,25 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-          // const SizedBox(
-          //   width: 5,
-          // ),
-          Container(
-            height: 48,
-            padding: const EdgeInsets.all(15),
-            color: yellow,
-            child: Image.asset(
-              'assets/images/notifications.png',
-              height: 10,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Cart(),
+                ),
+              );
+            },
+            child: Container(
+              height: 48,
+              padding: const EdgeInsets.all(15),
+              color: yellow,
+              child: Image.asset(
+                'assets/images/notifications.png',
+                height: 10,
+              ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -215,101 +208,183 @@ class _HomeState extends State<Home> {
   Widget foodCategories() {
     return Column(
       children: [
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               'Food Categories',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            Text('view all')
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: ElevatedButton(
+                onPressed: () {
+                  print('Login button pressed');
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AllFood()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: bg,
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Text('view all'),
+              ),
+            ),
           ],
         ),
+        const SizedBox(
+          height: 5,
+        ),
         Container(
-          height: 30,
+          height: 110,
+          padding: const EdgeInsets.all(10),
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: List.generate(
-              10,
-              (index) => Container(
-                margin: const EdgeInsets.all(4.0),
-                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                decoration: BoxDecoration(
-                  color: graybg,
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                child: const Text(
-                  'non-Veg',
-                  style: TextStyle(color: black, fontSize: 10),
+              5,
+              (index) => Center(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Restaurant(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 90,
+                    margin: const EdgeInsets.only(right: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: Colors.black, // Set the border color
+                        // Set the border width
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          child: Image.asset(
+                            'assets/images/foods/pancake.jpg',
+                            height: 62,
+                            width: 80,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const Text(
+                          'Pan Cake',
+                          style: TextStyle(color: black, fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
-        )
+        ),
+        const SizedBox(
+          height: 10,
+        ),
       ],
     );
   }
 
   Widget restaurant() {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 15),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
         children: [
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Restautant',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: ElevatedButton(
+                  onPressed: () {
+                    print('Login button pressed');
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AllFood()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: bg,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Text('view all'),
+                ),
               ),
             ],
           ),
+          const SizedBox(
+            height: 10,
+          ),
           Container(
-              height: 98,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: List.generate(
-                  5,
-                  (index) => Center(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Restaurant(),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: Colors.black, // Set the border color
-                            // Set the border width
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
+            height: 98,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: List.generate(
+                5,
+                (index) => Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Restaurant(),
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              height: 46,
-                              child: Image.asset(
-                                  'assets/images/restaurants/res1.png'),
-                            ),
-                            const Text(
-                              'Marcopolo Restaurant',
-                              style: TextStyle(color: black, fontSize: 12),
-                            ),
-                          ],
+                      );
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.black, // Set the border color
+                          // Set the border width
                         ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            height: 46,
+                            child: Image.asset(
+                                'assets/images/restaurants/res1.png'),
+                          ),
+                          const Text(
+                            'Marcopolo Restaurant',
+                            style: TextStyle(color: black, fontSize: 12),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-              )),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -322,13 +397,20 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              const Row(children: [
+                Text(
+                  'Hot deal',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  child: Icon(Icons.local_fire_department, size: 20),
+                )
+              ]),
               Container(
                 decoration: BoxDecoration(
-                  // Set background color of the box
-                  borderRadius: BorderRadius.circular(
-                      8), // Optional: Set border radius for rounded corners
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: ElevatedButton(
                   onPressed: () {
@@ -337,26 +419,31 @@ class _HomeState extends State<Home> {
                         MaterialPageRoute(builder: (context) => AllFood()));
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 5, 91, 161),
-                    foregroundColor: Colors.white,
+                    backgroundColor: bg,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    foregroundColor: Colors.black,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: const Text('All'),
+                  child: const Text('view all'),
                 ),
               ),
             ],
           ),
+          const SizedBox(
+            height: 10,
+          ),
           Container(
-            height: 300,
-            child: GridView.count(
-              crossAxisCount: 2,
+            height: 163,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
               children: List.generate(
                 5,
                 (index) => Container(
-                  height: 66,
-                  width: 120,
+                  height: 120,
+                  width: 160,
                   padding: const EdgeInsets.all(5),
                   margin: const EdgeInsets.all(4.0),
                   decoration: BoxDecoration(
